@@ -1,0 +1,195 @@
+#! /bin/bash
+sudo apt update && sudo apt upgrade -y
+sudo apt-get update-y
+sudo apt-get upgrade -y 
+sudo apt-get autoremove -y
+sudo apt-get autoclean -y
+sudo ufw enable
+
+sudo apt install git
+git clone https://github.com/anonymousone101/ubuntu.git
+
+
+sudo touch prohibited_files
+sudo chmod 777 prohibited_files
+
+
+sudo find / -iname "*.mp3" -print >> prohibited_files
+
+sudo touch admins
+sudo touch sudo
+sudo touch users
+sudo chmod 777 admins
+sudo chmod 777 sudo
+sudo chmod 777 users
+sudo touch userlist.txt
+sudo chmod 777 userlist.txt
+sudo touch cron.file
+sudo chmod 777 cron.file
+sudo cat /etc/crontab >> cron.file
+
+sudo cat /etc/group | grep "adm" >> admins
+sudo cat /etc/group | grep "sudo" >> sudo
+getent passwd {1000..60000} | cut -d: -f1 >> users
+
+getent passwd {1000..60000} | cut -d: -f1 >> userlist.txt
+#lockusers.sh
+
+
+for user in `cat userlist.txt`
+do
+passwd -l $user
+done
+
+sudo echo ‘allow-guest=false >> /usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf
+
+sudo touch sysctl.conf
+sudo chmod 777 sysctl.conf
+sudo apt install lynis
+sudo apt install chkrootkit
+sudo apt install clamav
+sudo apt install rkhunter
+
+sudo apt-get install wget
+sudo apt-get install ufw
+sudo apt-get install sed
+sudo apt-get install git
+
+
+
+#NETSTAT 
+sudo touch netstat
+sudo chmod 777 netstat
+sudo netstat -peanult >> netstat
+
+sudo ufw disable -y
+sudo ufw reset -y
+sudo ufw logging off -y
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 2222/tcp
+sudo ufw --force enable
+
+sudo apt-get clean
+sudo service ssh restart
+sudo update-grub2
+sudo systemctl restart systemd-timesyncd
+
+
+sudo chmod 640 /etc/shadow
+sudo chmod 644 /etc/vsftpd.conf
+
+#login.defs auto done
+sudo touch random
+sudo chmod 777 random
+echo "PASS_MAX_DAYS	15" >> random
+echo "PASS_MIN_DAYS	7" >> random
+echo "PASS_WARN_AGE	7" >> random
+echo "PASS_MIN_LEN	8" >> random
+sudo chmod 777 /etc/login.defs
+cat random >> /etc/login.defs
+sudo chmod 644 /etc/login.defs
+
+#ssh/sshd_config auto done
+sudo chmod 777 /etc/ssh/sshd_config
+cat ubuntu/ssh >> /etc/ssh/sshd_config
+sudo chmod 644 /etc/ssh/sshd_config
+
+
+
+sudo chmod 777 /etc/ssh/ssh_config
+cat ubuntu/ssh_con >> /etc/ssh/ssh_config
+sudo chmod 644 /etc/ssh/ssh_config
+
+
+
+#sysctl auto done
+sudo chmod 777 /etc/sysctl.conf
+cat ubuntu/sysctl >> /etc/sysctl.conf
+sudo chmod 644 /etc/sysctl.conf
+
+sudo sysctl -p
+
+
+sudo apt purge Netcat -y
+sudo apt purge John the Ripper -y
+sudo apt purge Hydra -y 
+sudo apt purge Aircrack-NG -y
+sudo apt purge FCrackZIP -y
+sudo apt purge LCrack -y
+sudo apt purge OphCrack -y
+sudo apt purge PDFCrack -y
+sudo apt purge Pyrit -y
+sudo apt purge RARCrack -y
+sudo apt purge SipCrack -y
+sudo apt purge IRPAS -y
+sudo apt purge LogKeys -y
+sudo apt purge Zeitgeist -y
+sudo apt purge NFS -y
+sudo apt purge NGINX -y
+sudo apt purge Inetd -y
+sudo apt purge VNC -y
+sudo apt purge SNMP -y
+
+sudo apt purge netcat -y
+sudo apt purge john the ripper -y
+sudo apt purge hydra -y
+sudo apt purge aircrack-bang -y
+sudo apt purge fcrackzip -y
+sudo apt purge lcrack -y
+sudo apt purge ophcrack -y
+sudo apt purge pdfcrack -y
+sudo apt purge pyrit -y
+sudo apt purge rarcrack -y
+sudo apt purge sipccrack -y
+sudo apt purge irpas -y
+sudo apt purge logkeys -y
+sudo apt purge zeitgeist -y
+sudo apt purge nfs -y
+sudo apt purge nginx -y
+sudo apt purge inetd -y
+sudo apt purge vnc -y
+sudo apt purge snmp -y
+Sudo apt purge oneko -y
+
+sudo apt-get remove netstumbler -y
+sudo apt-get remove wireshark -y
+sudo apt-get remove gameconqueror -y
+sudo apt-get remove jdownloader -y
+Sudo apt-get remove manaplus -y
+sudo apt-get remove webcompanion -y
+sudo apt-get remove pccleaner -y
+sudo apt-get remove pixeldungeon -y
+sudo apt-get remove mahjong -y
+sudo apt-get remove minesweeper -y
+sudo apt-get remove solitaire -y
+sudo apt autoremove
+
+
+
+sudo service netcat stop -y
+sudo service john the ripper stop -y
+sudo service hydra -y
+sudo service aircrack-bang stop -y
+sudo service fcrackzip stop -y
+sudo service lcrack stop -y
+sudo service ophcrack stop -y
+sudo service pdfcrack stop -y
+sudo service pyrit stop -y
+sudo service rarcrack stop -y
+sudo service sipccrack stop -y
+sudo service irpas stop -y
+sudo service logkeys stop -y
+sudo service zeitgeist stop -y
+sudo service nfs stop -y
+sudo service nginx stop -y
+sudo service inetd stop -y
+sudo service vnc stop -y
+sudo service snmp stop -y
+sudo service oneko stop -y
+
+
+
+sudo lynis audit system | grep "DIFFERENT"  >> sysctl.conf
