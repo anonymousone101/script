@@ -1,10 +1,9 @@
 #! /bin/bash
-sudo apt update && sudo apt upgrade -y
-sudo apt-get update-y
-sudo apt-get upgrade -y 
-sudo apt-get autoremove -y
-sudo apt-get autoclean -y
 sudo ufw enable
+
+sudo apt-get install linux-image-generic -y
+
+
 
 sudo apt install git
 git clone https://github.com/anonymousone101/ubuntu.git
@@ -104,13 +103,19 @@ cat ubuntu/ssh_con >> /etc/ssh/ssh_config
 sudo chmod 644 /etc/ssh/ssh_config
 
 
-
+sudo service ssh restart 
 #sysctl auto done
 sudo chmod 777 /etc/sysctl.conf
 cat ubuntu/sysctl >> /etc/sysctl.conf
 sudo chmod 644 /etc/sysctl.conf
 
 sudo sysctl -p
+
+sudo apt update && sudo apt upgrade -y
+sudo apt-get update-y
+sudo apt-get upgrade -y 
+sudo apt-get autoremove -y
+sudo apt-get autoclean -y
 
 
 sudo apt purge Netcat -y
