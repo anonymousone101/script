@@ -1,4 +1,5 @@
 #! /bin/bash
+echo "YOU HAVE MADE A GRAVE MISTAKE RUNNING THIS SCRIPT"
 sudo ufw enable
 
 sudo apt-get install linux-image-generic -y
@@ -23,7 +24,7 @@ sudo chmod 777 sudo
 sudo chmod 777 users
 sudo touch userlist.txt
 sudo chmod 777 userlist.txt
-sudo touch cron.file
+sudo touch cron.file-
 sudo chmod 777 cron.file
 sudo cat /etc/crontab >> cron.file
 
@@ -197,4 +198,7 @@ sudo service oneko stop -y
 
 
 
-sudo lynis audit system | grep "DIFFERENT"  >> sysctl.conf
+
+
+echo "use 'sudo lynis audit system | grep "DIFFERENT"  >> sysctl.conf' after this script has been finished
+echo "use 'sudo usermod -u (account you are on)' after this script has been completed"
